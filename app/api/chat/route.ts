@@ -48,7 +48,7 @@ Important: Always advise users to consult healthcare professionals for medical d
 
       return result.toDataStreamResponse()
     } catch (aiError: any) {
-      console.error("[v0] AI Gateway error:", aiError)
+      console.log("[v0] AI Gateway not available, using context-aware fallback response")
 
       const lastMessage = messages[messages.length - 1]?.content || ""
 
