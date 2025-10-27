@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
       return Response.json({ translatedText: translation })
     } catch (aiError) {
-      console.log("[v0] AI Gateway not available, returning original text")
+      console.error("[v0] AI translation failed, returning original text:", aiError)
       return Response.json({ translatedText: text })
     }
   } catch (error) {

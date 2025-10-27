@@ -1,6 +1,4 @@
-// import { createClient } from "@/lib/supabase/server"
-
-// Once database tables are created, uncomment the Supabase code below
+import { createClient } from "@/lib/supabase/server"
 
 const FALLBACK_VIDEOS = [
   {
@@ -93,13 +91,6 @@ const FALLBACK_VIDEOS = [
 ]
 
 export async function GET() {
-  // To enable database: uncomment the code below and comment out the return statement
-
-  console.log("[v0] Using fallback video data (database tables not yet created)")
-  return Response.json(FALLBACK_VIDEOS)
-
-  /* Uncomment this code once database tables are created:
-  
   try {
     const supabase = await createClient()
     const { data, error } = await supabase
@@ -108,14 +99,13 @@ export async function GET() {
       .order("created_at", { ascending: false })
 
     if (error) {
-      console.log("[v0] Database error, using fallback data:", error.message)
+      console.log("[v0] Database table not found, using fallback data")
       return Response.json(FALLBACK_VIDEOS)
     }
 
     return Response.json(data || FALLBACK_VIDEOS)
   } catch (error) {
-    console.log("[v0] Error fetching videos, using fallback data")
+    console.error("Error fetching videos:", error)
     return Response.json(FALLBACK_VIDEOS)
   }
-  */
 }

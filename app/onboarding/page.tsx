@@ -7,10 +7,12 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { Heart, ArrowRight, User, MapPin, Baby } from "lucide-react"
+import { Heart, ArrowRight, User, MapPin, Baby, AlertCircle } from "lucide-react"
+import { Alert, AlertDescription } from "@/components/ui/alert"
 
 export default function OnboardingPage() {
   const [step, setStep] = useState(1)
+  const [errors, setErrors] = useState<string[]>([])
   const [formData, setFormData] = useState({
     name: "",
     age: "",
@@ -42,9 +44,41 @@ export default function OnboardingPage() {
 
   const languages = ["English", "Krio", "Temne", "Mende", "Fula", "Limba"]
 
+  const validateStep = (currentStep: number): boolean => {
+    const newErrors: string[] = []
+
+    if (currentStep === 1) {
+      if (!formData.name.trim()) newErrors.push("Please enter your full name")
+      if (!formData.age || Number.parseInt(formData.age) < 1 || Number.parseInt(formData.age) > 120) {
+        newErrors.push("Please enter a valid age")
+      }
+      if (!formData.language) newErrors.push("Please select your preferred language")
+    }
+
+    if (currentStep === 2) {
+      if (!formData.district) newErrors.push("Please select your district")
+      if (!formData.location.trim()) newErrors.push("Please enter your community or town")
+      if (!formData.pregnancyStatus) newErrors.push("Please select your pregnancy status")
+    }
+
+    if (currentStep === 3) {
+      if (!formData.healthConcerns.trim() && !formData.learningGoals.trim()) {
+        newErrors.push("Please provide at least one health concern or learning goal")
+      }
+    }
+
+    setErrors(newErrors)
+    return newErrors.length === 0
+  }
+
   const handleNext = () => {
+    if (!validateStep(step)) {
+      return
+    }
+
     if (step < 3) {
       setStep(step + 1)
+      setErrors([]) // Clear errors when moving to next step
     } else {
       localStorage.setItem("healthwise-profile", JSON.stringify(formData))
       console.log("Form submitted:", formData)
@@ -54,6 +88,9 @@ export default function OnboardingPage() {
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+    if (errors.length > 0) {
+      setErrors([])
+    }
   }
 
   return (
@@ -90,6 +127,19 @@ export default function OnboardingPage() {
           </div>
         </div>
 
+        {errors.length > 0 && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertCircle className="h-4 w-4" />
+            <AlertDescription>
+              <ul className="list-disc list-inside space-y-1">
+                {errors.map((error, index) => (
+                  <li key={index}>{error}</li>
+                ))}
+              </ul>
+            </AlertDescription>
+          </Alert>
+        )}
+
         {/* Step 1: Basic Information */}
         {step === 1 && (
           <Card>
@@ -102,30 +152,40 @@ export default function OnboardingPage() {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
+                <Label htmlFor="name">
+                  Full Name <span className="text-red-500">*</span>
+                </Label>
                 <Input
                   id="name"
                   value={formData.name}
                   onChange={(e) => handleInputChange("name", e.target.value)}
                   placeholder="Enter your full name"
+                  required
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="age">Age</Label>
+                  <Label htmlFor="age">
+                    Age <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="age"
                     type="number"
+                    min="1"
+                    max="120"
                     value={formData.age}
                     onChange={(e) => handleInputChange("age", e.target.value)}
                     placeholder="Your age"
+                    required
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <Label>Preferred Language</Label>
-                  <Select onValueChange={(value) => handleInputChange("language", value)}>
+                  <Label>
+                    Preferred Language <span className="text-red-500">*</span>
+                  </Label>
+                  <Select value={formData.language} onValueChange={(value) => handleInputChange("language", value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select language" />
                     </SelectTrigger>
@@ -160,8 +220,10 @@ export default function OnboardingPage() {
             <CardContent className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>District</Label>
-                  <Select onValueChange={(value) => handleInputChange("district", value)}>
+                  <Label>
+                    District <span className="text-red-500">*</span>
+                  </Label>
+                  <Select value={formData.district} onValueChange={(value) => handleInputChange("district", value)}>
                     <SelectTrigger>
                       <SelectValue placeholder="Select district" />
                     </SelectTrigger>
@@ -176,19 +238,27 @@ export default function OnboardingPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="location">Community/Town</Label>
+                  <Label htmlFor="location">
+                    Community/Town <span className="text-red-500">*</span>
+                  </Label>
                   <Input
                     id="location"
                     value={formData.location}
                     onChange={(e) => handleInputChange("location", e.target.value)}
                     placeholder="Your community or town"
+                    required
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <Label>Pregnancy Status</Label>
-                <Select onValueChange={(value) => handleInputChange("pregnancyStatus", value)}>
+                <Label>
+                  Pregnancy Status <span className="text-red-500">*</span>
+                </Label>
+                <Select
+                  value={formData.pregnancyStatus}
+                  onValueChange={(value) => handleInputChange("pregnancyStatus", value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select status" />
                   </SelectTrigger>
@@ -203,10 +273,11 @@ export default function OnboardingPage() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="children">Number of Children</Label>
+                <Label htmlFor="children">Number of Children (Optional)</Label>
                 <Input
                   id="children"
                   type="number"
+                  min="0"
                   value={formData.children}
                   onChange={(e) => handleInputChange("children", e.target.value)}
                   placeholder="Number of children you have"
@@ -254,6 +325,10 @@ export default function OnboardingPage() {
                   rows={3}
                 />
               </div>
+
+              <p className="text-sm text-gray-500">
+                <span className="text-red-500">*</span> Please provide at least one health concern or learning goal
+              </p>
 
               <Button onClick={handleNext} className="w-full bg-pink-600 hover:bg-pink-700">
                 Start Learning Journey <ArrowRight className="h-4 w-4 ml-2" />

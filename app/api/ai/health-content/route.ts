@@ -56,7 +56,7 @@ export async function POST(req: Request) {
 
       return Response.json({ content: object })
     } catch (aiError) {
-      console.log("[v0] AI Gateway not available, using fallback health content")
+      console.error("[v0] AI generation failed, using fallback content:", aiError)
       return Response.json({ content: getFallbackContent(topic) })
     }
   } catch (error) {

@@ -6,124 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import {
-  Heart,
-  Play,
-  BookOpen,
-  MessageCircle,
-  Phone,
-  Volume2,
-  Globe,
-  Baby,
-  AlertTriangle,
-  Shield,
-  Droplets,
-  Apple,
-  Syringe,
-} from "lucide-react"
-
-const HEALTH_TOPICS = [
-  {
-    id: "malaria-protection",
-    title: "Protect Yourself from Malaria",
-    description: "Learn how to prevent malaria during pregnancy and protect your baby",
-    icon: Shield,
-    category: "Malaria Prevention",
-    priority: "high",
-    week: 1,
-    estimatedTime: "15 min",
-  },
-  {
-    id: "treated-nets",
-    title: "Sleep Under Treated Nets",
-    description: "Why insecticide-treated bed nets are essential for pregnant women",
-    icon: Shield,
-    category: "Malaria Prevention",
-    priority: "high",
-    week: 1,
-    estimatedTime: "10 min",
-  },
-  {
-    id: "standing-water",
-    title: "Remove Standing Water",
-    description: "Eliminate mosquito breeding sites around your home",
-    icon: Droplets,
-    category: "Malaria Prevention",
-    priority: "high",
-    week: 2,
-    estimatedTime: "12 min",
-  },
-  {
-    id: "malaria-prevention",
-    title: "Malaria Prevention Strategies",
-    description: "Complete guide to preventing malaria in Sierra Leone",
-    icon: Shield,
-    category: "Malaria Prevention",
-    priority: "high",
-    week: 2,
-    estimatedTime: "20 min",
-  },
-  {
-    id: "pregnancy-nutrition",
-    title: "Nutrition During Pregnancy",
-    description: "Essential nutrients and foods for a healthy pregnancy",
-    icon: Apple,
-    category: "Pregnancy Care",
-    priority: "high",
-    week: 3,
-    estimatedTime: "18 min",
-  },
-  {
-    id: "infectious-diseases",
-    title: "Infectious Diseases Prevention",
-    description: "Protect yourself and your baby from common infections",
-    icon: Syringe,
-    category: "Healthcare",
-    priority: "high",
-    week: 3,
-    estimatedTime: "15 min",
-  },
-  {
-    id: "pregnancy-care",
-    title: "Comprehensive Pregnancy Care",
-    description: "Complete guide to prenatal care and healthy pregnancy",
-    icon: Baby,
-    category: "Pregnancy Care",
-    priority: "high",
-    week: 4,
-    estimatedTime: "25 min",
-  },
-  {
-    id: "antenatal-visits",
-    title: "Antenatal Care Visits",
-    description: "When and why to visit the clinic during pregnancy",
-    icon: Heart,
-    category: "Healthcare",
-    priority: "high",
-    week: 4,
-    estimatedTime: "15 min",
-  },
-  {
-    id: "danger-signs",
-    title: "Pregnancy Danger Signs",
-    description: "Warning signs that require immediate medical attention",
-    icon: AlertTriangle,
-    category: "Healthcare",
-    priority: "high",
-    week: 5,
-    estimatedTime: "12 min",
-  },
-  {
-    id: "birth-preparation",
-    title: "Preparing for Birth",
-    description: "What to expect and how to prepare for delivery",
-    icon: Baby,
-    category: "Pregnancy Care",
-    priority: "medium",
-    week: 6,
-    estimatedTime: "20 min",
-  },
-]
+import { Heart, Play, BookOpen, MessageCircle, Phone, Volume2, Globe, Baby, AlertTriangle } from "lucide-react"
 
 export default function Dashboard() {
   const [userProfile, setUserProfile] = useState(null)
@@ -154,7 +37,6 @@ export default function Dashboard() {
       if (!response.ok) {
         const errorText = await response.text()
         console.error("[v0] Failed to load personalized plan:", errorText)
-        setLearningPlan({ weeklyTopics: HEALTH_TOPICS, urgentAlerts: [] })
         return
       }
 
@@ -162,7 +44,6 @@ export default function Dashboard() {
       setLearningPlan(data.plan)
     } catch (error) {
       console.error("[v0] Failed to load personalized plan:", error)
-      setLearningPlan({ weeklyTopics: HEALTH_TOPICS, urgentAlerts: [] })
     }
   }
 
@@ -279,13 +160,13 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-3">
-              <div className="bg-green-600 p-2 rounded-lg">
+              <div className="bg-pink-600 p-2 rounded-lg">
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -310,50 +191,50 @@ export default function Dashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Quick Access Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="bg-gradient-to-r from-pink-500 to-pink-600 text-white">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-pink-100">Emergency Hotline</p>
+                  <p className="text-2xl font-bold">117</p>
+                </div>
+                <Phone className="h-8 w-8 text-pink-200" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-purple-100">USSD Access</p>
+                  <p className="text-2xl font-bold">*737#</p>
+                </div>
+                <MessageCircle className="h-8 w-8 text-purple-200" />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-blue-100">WhatsApp Bot</p>
+                  <p className="text-lg font-bold">+232-XX-XXX</p>
+                </div>
+                <MessageCircle className="h-8 w-8 text-blue-200" />
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="bg-gradient-to-r from-green-500 to-green-600 text-white">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-green-100">Emergency Hotline</p>
-                  <p className="text-2xl font-bold">117</p>
-                </div>
-                <Phone className="h-8 w-8 text-green-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-emerald-100">USSD Access</p>
-                  <p className="text-2xl font-bold">*737#</p>
-                </div>
-                <MessageCircle className="h-8 w-8 text-emerald-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-teal-500 to-teal-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-teal-100">WhatsApp Bot</p>
-                  <p className="text-lg font-bold">+232-XX-XXX</p>
-                </div>
-                <MessageCircle className="h-8 w-8 text-teal-200" />
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-r from-lime-500 to-lime-600 text-white">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-lime-100">Voice Learning</p>
+                  <p className="text-green-100">Voice Learning</p>
                   <p className="text-lg font-bold">Available</p>
                 </div>
-                <Volume2 className="h-8 w-8 text-lime-200" />
+                <Volume2 className="h-8 w-8 text-green-200" />
               </div>
             </CardContent>
           </Card>
@@ -395,60 +276,44 @@ export default function Dashboard() {
 
                 {/* Weekly Learning Topics */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {(learningPlan.weeklyTopics || HEALTH_TOPICS).map((topic, index) => {
-                    const IconComponent = topic.icon || BookOpen
-                    return (
-                      <Card key={index} className="hover:shadow-lg transition-shadow border-green-200">
-                        <CardHeader>
-                          <div className="flex items-center justify-between mb-2">
-                            <Badge
-                              variant={
-                                topic.priority === "high"
-                                  ? "destructive"
-                                  : topic.priority === "medium"
-                                    ? "default"
-                                    : "secondary"
-                              }
-                              className={topic.priority === "high" ? "bg-green-600" : ""}
-                            >
-                              Week {topic.week}
-                            </Badge>
-                            <span className="text-sm text-gray-500">{topic.estimatedTime}</span>
-                          </div>
-                          <div className="flex items-center space-x-2 mb-2">
-                            <IconComponent className="h-5 w-5 text-green-600" />
-                            <CardTitle className="text-lg">{topic.title || topic.topic}</CardTitle>
-                          </div>
-                          <CardDescription>{topic.description}</CardDescription>
-                          {topic.category && (
-                            <Badge variant="outline" className="mt-2 w-fit">
-                              {topic.category}
-                            </Badge>
-                          )}
-                        </CardHeader>
-                        <CardContent>
-                          <div className="flex space-x-2">
-                            <Button
-                              size="sm"
-                              onClick={() => loadHealthContent(topic.title || topic.topic)}
-                              className="flex-1 bg-green-600 hover:bg-green-700"
-                            >
-                              <BookOpen className="h-4 w-4 mr-2" />
-                              Learn
-                            </Button>
-                            <Button
-                              size="sm"
-                              variant="outline"
-                              onClick={() => playAudio(topic.description)}
-                              disabled={isPlaying}
-                            >
-                              <Volume2 className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    )
-                  })}
+                  {learningPlan.weeklyTopics?.slice(0, 6).map((topic, index) => (
+                    <Card key={index} className="hover:shadow-lg transition-shadow">
+                      <CardHeader>
+                        <div className="flex items-center justify-between">
+                          <Badge
+                            variant={
+                              topic.priority === "high"
+                                ? "destructive"
+                                : topic.priority === "medium"
+                                  ? "default"
+                                  : "secondary"
+                            }
+                          >
+                            Week {topic.week}
+                          </Badge>
+                          <span className="text-sm text-gray-500">{topic.estimatedTime}</span>
+                        </div>
+                        <CardTitle className="text-lg">{topic.topic}</CardTitle>
+                        <CardDescription>{topic.description}</CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="flex space-x-2">
+                          <Button size="sm" onClick={() => loadHealthContent(topic.topic)} className="flex-1">
+                            <BookOpen className="h-4 w-4 mr-2" />
+                            Learn
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => playAudio(topic.description)}
+                            disabled={isPlaying}
+                          >
+                            <Volume2 className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
                 </div>
               </>
             )}
