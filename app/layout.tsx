@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import { Roboto_Mono } from "next/font/google"
 import { OfflineIndicator } from "@/components/offline-indicator"
 import { AppProvider } from "@/context/app-context"
+import { Chatbot } from "@/components/chatbot"
 import "./globals.css"
 
 const inter = Inter({
@@ -43,6 +44,7 @@ export default function RootLayout({
         <AppProvider>
           <OfflineIndicator />
           {children}
+          <Chatbot />
         </AppProvider>
       </body>
     </html>

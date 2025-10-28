@@ -18,7 +18,7 @@ export default function OfflinePage() {
 
           <h1 className="text-2xl font-bold text-gray-900 mb-4">You're Offline</h1>
 
-          <p className="text-gray-600 mb-6">HealthConnect works offline too! You can still:</p>
+          <p className="text-gray-600 mb-6">HealthWise works offline too! You can still:</p>
 
           <ul className="text-left text-gray-700 space-y-2 mb-6">
             <li>• Record voice messages for consultations</li>

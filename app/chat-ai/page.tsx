@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Bot, User, Send, Loader2 } from "lucide-react"
-import { useChat } from "ai/react"
+import { useChat } from "ai"
 
 export default function ChatAIPage() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({

@@ -107,7 +107,7 @@ export async function POST(req: Request) {
 
       return Response.json({ plan: object })
     } catch (aiError) {
-      console.error("[v0] AI generation failed, using fallback data:", aiError)
+      console.log("[v0] AI Gateway not available, using fallback learning plan")
       return Response.json({ plan: fallbackPlan })
     }
   } catch (error) {

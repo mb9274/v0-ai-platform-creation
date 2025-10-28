@@ -91,24 +91,45 @@ export function WellnessTracker() {
           <CardTitle>Log Activity</CardTitle>
           <CardDescription>Track your daily wellness activities</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-3">
-          <Button
-            onClick={() =>
-              setMetrics({ ...metrics, waterIntake: Math.min(metrics.waterIntake + 1, metrics.waterGoal) })
-            }
-            className="w-full bg-blue-600 hover:bg-blue-700"
-          >
-            <Droplet className="h-4 w-4 mr-2" />
-            Log Water Glass
-          </Button>
-          <Button variant="outline" className="w-full bg-transparent">
-            <Activity className="h-4 w-4 mr-2" />
-            Log Exercise
-          </Button>
-          <Button variant="outline" className="w-full bg-transparent">
-            <Moon className="h-4 w-4 mr-2" />
-            Log Sleep
-          </Button>
+        <CardContent className="space-y-4">
+          <div className="space-y-3">
+            <div className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <Button
+                onClick={() =>
+                  setMetrics({ ...metrics, waterIntake: Math.min(metrics.waterIntake + 1, metrics.waterGoal) })
+                }
+                className="w-full bg-blue-600 hover:bg-blue-700 mb-2"
+              >
+                <Droplet className="h-4 w-4 mr-2" />
+                Log Water Glass
+              </Button>
+              <p className="text-sm text-gray-600">
+                Stay hydrated during pregnancy. Drinking 8 glasses daily helps prevent dehydration and supports baby's
+                development.
+              </p>
+            </div>
+
+            <div className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <Button variant="outline" className="w-full bg-transparent mb-2">
+                <Activity className="h-4 w-4 mr-2" />
+                Log Exercise
+              </Button>
+              <p className="text-sm text-gray-600">
+                Light exercise like walking helps maintain healthy weight, reduces pregnancy discomfort, and prepares
+                your body for labor.
+              </p>
+            </div>
+
+            <div className="border rounded-lg p-4 hover:bg-gray-50 transition-colors">
+              <Button variant="outline" className="w-full bg-transparent mb-2">
+                <Moon className="h-4 w-4 mr-2" />
+                Log Sleep
+              </Button>
+              <p className="text-sm text-gray-600">
+                Quality sleep is essential during pregnancy. Aim for 7-9 hours to support your health and baby's growth.
+              </p>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -162,7 +162,7 @@ Important guidelines:
 
       return result.toDataStreamResponse()
     } catch (aiError) {
-      console.error("[v0] AI Gateway error, using fallback response:", aiError)
+      console.log("[v0] AI Gateway not available, using comprehensive fallback response")
 
       const fallbackText = getFallbackResponse(messages)
 

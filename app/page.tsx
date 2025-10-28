@@ -52,22 +52,22 @@ export default function HealthWisePlatform() {
 
         <section className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           <div className="stats-card-light rounded-3xl p-8 text-center shadow-sm">
-            <div className="text-4xl md:text-5xl font-bold text-teal-700 mb-2">1M+</div>
+            <div className="text-4xl md:text-5xl font-bold text-teal-700 mb-2">2,500+</div>
             <div className="text-gray-600 font-medium">Active Patients</div>
           </div>
 
           <div className="stats-card-dark rounded-3xl p-8 text-center shadow-lg">
-            <div className="text-4xl md:text-5xl font-bold mb-2">200+</div>
+            <div className="text-4xl md:text-5xl font-bold mb-2">45+</div>
             <div className="text-white/80 font-medium">Doctors</div>
           </div>
 
           <div className="stats-card-light rounded-3xl p-8 text-center shadow-sm">
-            <div className="text-4xl md:text-5xl font-bold text-teal-700 mb-2">1200+</div>
+            <div className="text-4xl md:text-5xl font-bold text-teal-700 mb-2">850+</div>
             <div className="text-gray-600 font-medium">Health Sessions</div>
           </div>
 
           <div className="stats-card-dark rounded-3xl p-8 text-center shadow-lg">
-            <div className="text-4xl md:text-5xl font-bold mb-2">5M+</div>
+            <div className="text-4xl md:text-5xl font-bold mb-2">12K+</div>
             <div className="text-white/80 font-medium">Resources</div>
           </div>
         </section>
@@ -148,6 +148,80 @@ export default function HealthWisePlatform() {
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-2">Voice Calls</h3>
               <p className="text-gray-600 text-sm">Audio consultations</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">Health Articles & Education</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Access comprehensive health information in multiple languages with audio support
+          </p>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-green-100">
+              <div className="bg-green-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-7 w-7 text-green-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Malaria Prevention</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Learn how to protect yourself and your baby from malaria with treated nets and prevention strategies
+              </p>
+              <div className="text-xs text-green-600 font-medium">✓ Audio available in Krio, Temne & English</div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-pink-100">
+              <div className="bg-pink-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-7 w-7 text-pink-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Pregnancy Care</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Essential guidance on antenatal visits, nutrition, and preparing for a safe delivery
+              </p>
+              <div className="text-xs text-pink-600 font-medium">✓ Step-by-step guides with illustrations</div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-blue-100">
+              <div className="bg-blue-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Stethoscope className="h-7 w-7 text-blue-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Nutrition & Health</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Proper nutrition during pregnancy and breastfeeding to keep you and your baby healthy
+              </p>
+              <div className="text-xs text-blue-600 font-medium">✓ Local food recommendations included</div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-purple-100">
+              <div className="bg-purple-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-7 w-7 text-purple-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Infectious Diseases</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Prevention and treatment information for common infections during pregnancy
+              </p>
+              <div className="text-xs text-purple-600 font-medium">✓ Warning signs and when to seek help</div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-orange-100">
+              <div className="bg-orange-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-7 w-7 text-orange-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Baby Care Basics</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Everything you need to know about caring for your newborn in the first months
+              </p>
+              <div className="text-xs text-orange-600 font-medium">✓ Video demonstrations available</div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 shadow-sm border-2 border-teal-100">
+              <div className="bg-teal-100 w-14 h-14 rounded-2xl flex items-center justify-center mb-4">
+                <Heart className="h-7 w-7 text-teal-600" />
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-2">Emergency Care</h3>
+              <p className="text-gray-600 text-sm mb-3">
+                Recognize danger signs and know when to seek immediate medical attention
+              </p>
+              <div className="text-xs text-teal-600 font-medium">✓ 24/7 emergency contacts provided</div>
             </div>
           </div>
         </section>
